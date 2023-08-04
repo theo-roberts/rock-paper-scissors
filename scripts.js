@@ -85,27 +85,43 @@ function whoWon(){
     }
     else if (winner == 'draw'){
         const roundResult = document.querySelector('#roundResult');
-        roundResult.textContent = 'It\'s a draw! You both picked the same one!'
+        roundResult.textContent = ('no score, you both picked ' + playerChoice)
     }
 }
 
 function checkWinner(){
     if (playerScore == 3 || computerScore == 3){
         declareWinner()
+        replayButton()
     }
 }
 
 function declareWinner() {
-    if (playerScore == computerScore){
-        alert ("It's a Draw!!!")
-        }
-    else if (playerScore > computerScore){
-        alert ("You Win!!!!!")
+    if (playerScore > computerScore){
+        const winner = document.querySelector('#winner');
+        roundResult.textContent = ("YOU WIN")
+        roundResult.style.cssText = ('color: lightgreen; font-size: 54px')
+        document.getElementById('rock').disabled = true;
+        document.getElementById('paper').disabled = true;
+        document.getElementById('scissors').disabled = true;
         }
     else if (playerScore < computerScore){
-         alert ("Computer Wins :(")
+        const winner = document.querySelector('#winner');
+        roundResult.textContent = ("YOU LOSE")
+        roundResult.style.cssText = ('color: red; font-size: 54px')
+        document.getElementById('rock').disabled = true;
+        document.getElementById('paper').disabled = true;
+        document.getElementById('scissors').disabled = true;
         }
+    else (null)
 }
 
-const reset = document.querySelector('#reset')
-reset.addEventListener('click', () => location.reload())
+function replayButton(){   
+    const startAgain = document.querySelector('#startAgain');
+    const replayButton = document.createElement('button');
+    replayButton.classList.add('replayButton');
+    replayButton.textContent = 'replay';
+    replayButton.style.cssText = ('background-color: transparent; border-style: solid; border-color: black; border-width: 0.5px; font-family: Courier, monospace;')
+    startAgain.appendChild(replayButton);
+    replayButton.addEventListener('click', () => location.reload());
+}
